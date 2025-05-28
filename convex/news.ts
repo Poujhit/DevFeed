@@ -211,7 +211,7 @@ export const fetchAndProcessNews = action({
 
         // Introduce a delay before processing each new item to respect API rate limits
         if (processedCount > 0) {
-          // No delay before the very first item
+          // No delay before the very first item - rate limiting added
           await sleep(4000); // 4-second delay (60s / 15 RPM = 4s/request)
         }
 
