@@ -129,6 +129,9 @@ async function generateSummaryWithGemini(
   }
 }
 
+// Helper function to introduce a delay
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 // Action to fetch news from Hacker News, parse, and store with summary
 export const fetchAndProcessNews = action({
   args: {},
@@ -154,7 +157,7 @@ export const fetchAndProcessNews = action({
 
       const itemsToProcess: NewsItemData[] = [];
 
-      $('tr.athing').each((i, el) => {
+      $('tr.athing').each((_, el) => {
         const id = $(el).attr('id');
         const titleElement = $(el).find('td.title > span.titleline > a');
         const title = titleElement.text().trim();
@@ -187,7 +190,7 @@ export const fetchAndProcessNews = action({
       });
 
       console.log(`Found ${itemsToProcess.length} items from Hacker News.`);
-      const maxItemsToProcess = 30;
+      const maxItemsToProcess = 30; // Process up to 30 items
 
       for (const item of itemsToProcess) {
         if (processedCount >= maxItemsToProcess) {
@@ -206,7 +209,15 @@ export const fetchAndProcessNews = action({
           continue;
         }
 
-        console.log(`Processing new item: ${item.title}`);
+        // Introduce a delay before processing each new item to respect API rate limits
+        if (processedCount > 0) {
+          // No delay before the very first item
+          await sleep(4000); // 4-second delay (60s / 15 RPM = 4s/request)
+        }
+
+        console.log(
+          `Processing new item (${processedCount + 1}/${maxItemsToProcess}): ${item.title}`
+        );
         let summary: string | null = null;
         let processingState = 'pending_summary';
 
