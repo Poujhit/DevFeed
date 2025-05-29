@@ -5,7 +5,7 @@ DevFeed is a news aggregator application that fetches top stories from Hacker Ne
 ## Features
 
 - **Hacker News Integration**: Fetches the latest stories from Hacker News.
-- **AI Summaries**: Uses Google's Gemini 2.5 Flash model to generate concise summaries for each article.
+- **AI Summaries**: Uses Google's Gemini 2.0 Flash model to generate concise summaries for each article.
 - **Real-time Updates**: Leverages Convex for real-time data synchronization between backend and frontend.
 - **Responsive Design**: Built with Tailwind CSS for a responsive experience across devices.
 - **Scheduled Data Fetching**: Automatically scrapes and processes news at regular intervals using Convex cron jobs.
