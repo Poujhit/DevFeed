@@ -16,7 +16,7 @@ DevFeed is a news aggregator application that fetches top stories from Hacker Ne
 - **Frontend**: React, TypeScript, Vite
 - **Styling**: Tailwind CSS
 - **Backend & Database**: [Convex](https://convex.dev/)
-- **AI Summarization**: Google Gemini API (2.50 Flash)
+- **AI Summarization**: Google Gemini API (2.0 Flash)
 - **HTML Parsing (Backend)**: Cheerio
 
 ## Project Structure
